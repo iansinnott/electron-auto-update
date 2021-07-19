@@ -5,12 +5,24 @@
   "main": "build/main.js",
   "author": "Ian Sinnott <ian@iansinnott.com>",
   "license": "MIT",
-  "private": false,
+  "build": {
+    "appId": "com.iansinnott.electron-auto-update",
+    "productName": "Electron Auto Update",
+    "copyright": "Copyright © 2021 Ian Sinnot",
+    "publish": {
+      "provider": "github"
+    }
+  },
+  "private": true,
   "scripts": {
     "start": "npx concurrently 'tsc -w' 'electron .'",
     "build": "NODE_ENV=production tsc"
   },
   "devDependencies": {
-    "electron": "^13.1.7"
+    "electron": "^13.1.7",
+    "electron-builder": "^22.11.7"
+  },
+  "dependencies": {
+    "electron-updater": "^4.3.9"
   }
 }
