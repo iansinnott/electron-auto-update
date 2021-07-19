@@ -2,9 +2,13 @@
   "name": "electron-auto-update",
   "version": "1.0.0",
   "description": "A tutorial on updating electron apps",
-  "main": "build/main.js",
+  "main": "resources/main.js",
   "author": "Ian Sinnott <ian@iansinnott.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iansinnott/electron-auto-update"
+  },
   "build": {
     "appId": "com.iansinnott.electron-auto-update",
     "productName": "Electron Auto Update",

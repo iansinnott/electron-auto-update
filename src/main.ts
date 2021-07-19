@@ -16,7 +16,7 @@ function createWindow() {
     height: 600,
   });
 
-  win.loadFile("build/index.html");
+  win.loadFile("resources/index.html");
 }
 
 // In the docs they use the `whenReady` promise, but I prefer treating the app
