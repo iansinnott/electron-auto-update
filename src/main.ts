@@ -8,13 +8,17 @@
  * The main process. You're in a full node env here.
  */
 
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
 import { autoUpdater } from "electron-updater";
 
 function createWindow() {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
   });
 
   win.loadFile("resources/index.html");
@@ -35,6 +39,10 @@ app.on("ready", () => {
     if (process.platform !== "darwin") {
       app.quit();
     }
+  });
+
+  ipcMain.handle("check-version", () => {
+    return Promise.resolve(autoUpdater.currentVersion);
   });
 
   autoUpdater.currentVersion;
