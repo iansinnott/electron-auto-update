@@ -13,6 +13,9 @@
     "appId": "com.iansinnott.electron-auto-update",
     "productName": "Electron Auto Update",
     "copyright": "Copyright © 2021 Ian Sinnot",
+    "mac": {
+      "identity": null
+    },
     "publish": {
       "provider": "github"
     }
