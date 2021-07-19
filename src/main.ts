@@ -10,6 +10,13 @@
 
 import { app, BrowserWindow, ipcMain } from "electron";
 import { autoUpdater } from "electron-updater";
+import logger from "electron-log";
+
+// Utilize electron log to help with debugging
+logger.transports.file.level = "info";
+autoUpdater.logger = logger;
+
+let mainWindow: BrowserWindow | null = null;
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -22,6 +29,8 @@ function createWindow() {
   });
 
   win.loadFile("resources/index.html");
+
+  mainWindow = win;
 }
 
 // In the docs they use the `whenReady` promise, but I prefer treating the app
@@ -36,6 +45,7 @@ app.on("ready", () => {
   // system behavior is not to quit the app but to leave it open and allow the
   // user to "reactivate" it by clicking the dock icon.
   app.on("window-all-closed", () => {
+    mainWindow = null;
     if (process.platform !== "darwin") {
       app.quit();
     }
@@ -45,7 +55,17 @@ app.on("ready", () => {
     return Promise.resolve(autoUpdater.currentVersion);
   });
 
-  autoUpdater.currentVersion;
+  autoUpdater.on("update-available", (x) => {
+    if (mainWindow) {
+      mainWindow.webContents.send("update-available", x);
+    }
+  });
+
+  autoUpdater.on("update-not-available", (x) => {
+    if (mainWindow) {
+      mainWindow.webContents.send("update-not-available", x);
+    }
+  });
 
   // This is alos to support the above cross platform functionality. On macOS
   // when the dock icon is clicked the `activate` event will fire. Listening for
