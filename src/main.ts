@@ -8,4 +8,17 @@
  * The main process. You're in a full node env here.
  */
 
-import { app, ipcMain } from "electron";
+import { app, BrowserWindow } from "electron";
+
+function createWindow() {
+  const win = new BrowserWindow({
+    width: 800,
+    height: 600,
+  });
+
+  win.loadFile("build/index.html");
+}
+
+app.whenReady().then(() => {
+  createWindow();
+});
