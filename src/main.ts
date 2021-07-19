@@ -27,5 +27,23 @@ function createWindow() {
 // @note to self, also not using the point free style here since that can be
 // confusing to people less-accustomed to functional programming.
 app.on("ready", () => {
+  // A bit of cross-platform code here. When you close all windows on a Mac the
+  // system behavior is not to quit the app but to leave it open and allow the
+  // user to "reactivate" it by clicking the dock icon.
+  app.on("window-all-closed", () => {
+    if (process.platform !== "darwin") {
+      app.quit();
+    }
+  });
+
+  // This is alos to support the above cross platform functionality. On macOS
+  // when the dock icon is clicked the `activate` event will fire. Listening for
+  // that lets us re-create a window when the user clicks the icon.
+  app.on("activate", () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow();
+    }
+  });
+
   createWindow();
 });
