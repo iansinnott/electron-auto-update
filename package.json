@@ -1,0 +1,9 @@
+{
+  "name": "electron-auto-update",
+  "version": "1.0.0",
+  "description": "A tutorial on updating electron apps",
+  "main": "dist/main.js",
+  "author": "Ian Sinnott <ian@iansinnott.com>",
+  "license": "MIT",
+  "private": false
+}
