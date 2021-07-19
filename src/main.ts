@@ -9,6 +9,7 @@
  */
 
 import { app, BrowserWindow } from "electron";
+import { autoUpdater } from "electron-updater";
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -36,6 +37,8 @@ app.on("ready", () => {
     }
   });
 
+  autoUpdater.currentVersion;
+
   // This is alos to support the above cross platform functionality. On macOS
   // when the dock icon is clicked the `activate` event will fire. Listening for
   // that lets us re-create a window when the user clicks the icon.
@@ -45,5 +48,9 @@ app.on("ready", () => {
     }
   });
 
+  // Initialize the app for the first time
   createWindow();
+
+  // Check for updates. Send a system notification
+  autoUpdater.checkForUpdatesAndNotify();
 });
