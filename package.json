@@ -1,6 +1,6 @@
 {
   "name": "electron-auto-update",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A tutorial on updating electron apps",
   "main": "resources/main.js",
   "author": "Ian Sinnott <ian@iansinnott.com>",
