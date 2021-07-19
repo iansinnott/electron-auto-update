@@ -23,7 +23,8 @@
   "private": true,
   "scripts": {
     "start": "npx concurrently 'tsc -w' 'electron .'",
-    "build": "NODE_ENV=production tsc"
+    "build": "NODE_ENV=production tsc && electron-builder --mac",
+    "release": "NODE_ENV=production tsc && electron-builder --mac --publish always"
   },
   "devDependencies": {
     "electron": "^13.1.7",
