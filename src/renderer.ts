@@ -10,7 +10,7 @@ ipcRenderer.invoke("check-version").then((x) => {
   }
 });
 
-ipcRenderer.on("update-available", (x) => {
+ipcRenderer.on("update-available", (_e, x) => {
   console.log("update-available", x);
   if (messageEl) {
     // @ts-ignore
@@ -18,7 +18,7 @@ ipcRenderer.on("update-available", (x) => {
   }
 });
 
-ipcRenderer.on("update-not-available", (x) => {
+ipcRenderer.on("update-not-available", (_e, x) => {
   console.log("update-not-available", x);
   if (messageEl) {
     // @ts-ignore
