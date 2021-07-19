@@ -19,6 +19,13 @@ function createWindow() {
   win.loadFile("build/index.html");
 }
 
-app.whenReady().then(() => {
+// In the docs they use the `whenReady` promise, but I prefer treating the app
+// as an EventEmitter and using the standard `on` method since there are many,
+// many event emitters you will deal with when using electron and they won't all
+// have a special method for the specific event you're interested in.
+//
+// @note to self, also not using the point free style here since that can be
+// confusing to people less-accustomed to functional programming.
+app.on("ready", () => {
   createWindow();
 });
